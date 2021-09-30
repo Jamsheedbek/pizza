@@ -42,6 +42,7 @@ var contents = [
     }
 ]
 var buyurtma = [];
+var tanlanayotgan = [];
 var wrapper = document.querySelector('#wrapper');
 var form = document.querySelector('#form');
 
@@ -203,7 +204,11 @@ buttonWrapper.appendChild(BUTTON);
 wrapper.addEventListener('click', function(event){
     var inputValue = Number(event.target.dataset.id);
     
-    
+    if(event.target.matches('input')){
+        
+        tanlanayotgan.push(document.getElementsByTagName('input')[inputValue].value);
+        resultText.textContent = tanlanayotgan;
+    }
     if(event.target.matches('input')){
         if(inputValue>=0 && inputValue<6){
             buyurtma[0] = document.getElementsByTagName('input')[inputValue].value;
@@ -220,7 +225,7 @@ wrapper.addEventListener('click', function(event){
         
         console.log(buyurtma);
     }
-    if(buyurtma.length==4){
+    if(buyurtma[0]!=undefined && buyurtma[1]!=undefined && buyurtma[2]!=undefined && buyurtma[3]!=undefined){
         resultText.textContent = 'Siz ' + buyurtma[1] + ' ' + buyurtma[2] + 'li ' + ' va ' + buyurtma[3] + 'li ' + buyurtma[0] + ' buyurtma qilmoqchimisz';
     }
 })
